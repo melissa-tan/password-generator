@@ -1,9 +1,3 @@
-var password = "";
-var lowerChar = "abcdefghijklmnopqrstuvwxyz";
-var upperChar = lowerChar.toUpperCase();
-var symbol= '!@#$%^&*()+-=<>,./?'
-var number= "1234567890";
-
 var generateBtn = document.querySelector("#generate");
 var passwordLengthEl = document.querySelector("#charInputNumber");
 var lowerCaseEl = document.querySelector("#lowerCaseCheckbox");
@@ -16,6 +10,7 @@ var lowerCase = false;
 var upperCase = false;
 var symbols = false;
 var numeric = false;
+var characterPoolArray = [];
 
 lowerCaseEl.addEventListener("change", function() {
   if(this.checked){
@@ -39,29 +34,34 @@ symbolsEl.addEventListener("change", function() {
 });
 
 //If checkboxes are selected, add characters into a pool.
-function characterPool(){
-  var characterPool = "";
+
+var characterPool = "";
+function addCharacters(){
+  var lowerChar = "abcdefghijklmnopqrstuvwxyz";
+  var upperChar = lowerChar.toUpperCase();
+  var symbol= '!@#$%^&*()+-=<>,./?'
+  var number= "1234567890";
+
   if(lowerCase===true){
-    characterPool.concat(lowerChar);
-    return characterPool;
+    characterPool += lowerChar;
   }
 
   if(upperCase===true){
-    characterPool.concat(upperChar);
-    return characterPool;
-  }
-
-  if(numeric===true){
-    characterPool.concat(number);
-    return characterPool;
-  }
-
-  if(symbols===true){
-    characterPool.concat(symbol);
-    return characterPool;
+    characterPool += upperChar;
   }
   
+  if(numeric===true){
+    characterPool += number;
+  }
+  
+  if(symbols===true){
+    characterPool += symbol;
+  } 
+  characterPoolArray = characterPool.split("");
+  console.log(characterPoolArray)
+  return characterPoolArray;
 }
+
 
 function passwordLengthCheck(lengthInput){
   
@@ -83,13 +83,24 @@ function writePassword() {
   passwordLength = +passwordLengthEl.value
   passwordLengthCheck(passwordLength);
   checkboxCheck();
-  console.log(characterPool);
+  addCharacters();
 
-  var password = generatePassword();
+  var password = generatePassword(passwordLength, characterPoolArray);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
+}
+
+ function generatePassword(passwordLength, characterPoolArray){
+  var password= [];
+  for(i=0 ; i< passwordLength; i++){
+    // characterPoolArray(Math.floor(Math.random() * )
+    var characters = characterPoolArray[Math.floor(Math.random()* characterPoolArray.length)]
+    console.log(characters)
+    password.push(characters) 
+  }
+  return password.join("");
 }
 
 // Add event listener to generate button
