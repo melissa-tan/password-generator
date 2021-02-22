@@ -11,7 +11,7 @@ var upperCase = false;
 var symbols = false;
 var numeric = false;
 var characterPoolArray = [];
-
+//Check to see if checkboxes are selected
 lowerCaseEl.addEventListener("change", function() {
   if(this.checked){
     lowerCase = true;
@@ -41,8 +41,7 @@ symbolsEl.addEventListener("change", function() {
   }
 });
 
-//If checkboxes are selected, add characters into a pool.
-
+//If checkboxes are selected, add characters into a pool and turns it into an array.
 var characterPool = "";
 function addCharacters(){
   var lowerChar = "abcdefghijklmnopqrstuvwxyz";
@@ -66,11 +65,10 @@ function addCharacters(){
     characterPool += symbol;
   } 
   characterPoolArray = characterPool.split("");
-  console.log(characterPoolArray)
   return characterPoolArray;
 }
 
-
+//check if the length of the password is between 8-128
 function passwordLengthCheck(lengthInput){
   
   if(lengthInput<8 || lengthInput>128){
@@ -80,6 +78,7 @@ function passwordLengthCheck(lengthInput){
   }
 }
 
+//if all checkboxes are not checked, an alert will pop up for the user to select at least one 
 function checkboxCheck(){
   if(lowerCase===false && upperCase===false && numeric===false && symbols===false){
     alert("Please select at least one type of character for your password");
@@ -103,6 +102,7 @@ function writePassword() {
 
 }
 
+//function to loop through the character pool array and pull random characters to generate the password
  function generatePassword(passwordLength, characterPoolArray){
   var password= [];
   for(i=0 ; i< passwordLength; i++){
