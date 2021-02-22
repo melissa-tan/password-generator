@@ -15,21 +15,29 @@ var characterPoolArray = [];
 lowerCaseEl.addEventListener("change", function() {
   if(this.checked){
     lowerCase = true;
+  } else {
+    lowerCase = false;
   }
 });
 upperCaseEl.addEventListener("change", function() {
   if(this.checked){
     upperCase = true;
+  } else {
+    upperCase = false;
   }
 });
 numericEl.addEventListener("change", function() {
   if(this.checked){
     numeric = true;
+  } else {
+    numeric = false;
   }
 });
 symbolsEl.addEventListener("change", function() {
   if(this.checked){
     symbols = true;
+  } else {
+    symbols = false;
   }
 });
 
@@ -67,6 +75,8 @@ function passwordLengthCheck(lengthInput){
   
   if(lengthInput<8 || lengthInput>128){
     alert("Please choose a password length between 8 and 128");
+    passwordLength = 0;
+    return;
   }
 }
 
@@ -83,6 +93,7 @@ function writePassword() {
   passwordLength = +passwordLengthEl.value
   passwordLengthCheck(passwordLength);
   checkboxCheck();
+  characterPool= "";
   addCharacters();
 
   var password = generatePassword(passwordLength, characterPoolArray);
