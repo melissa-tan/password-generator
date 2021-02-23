@@ -51,12 +51,13 @@ header {
 }
 
 .card-options{
+  justify-content: center;
+  align-items: center;
   display: grid;
+  width: 60%;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
   row-gap: 1rem;
-  justify-content: center;
-  align-items: center;
   font-weight: bold;
 }
 .card-body {
