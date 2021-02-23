@@ -85,8 +85,6 @@ function checkboxCheck(){
   }
 }
 
-
-
 // Write password to the #password input
 function writePassword() {
   passwordLength = +passwordLengthEl.value
