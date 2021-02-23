@@ -6,7 +6,7 @@ var numericEl = document.querySelector("#numberCheckbox");
 var symbolsEl = document.querySelector("#symbolCheckbox");
 
 var passwordLength;
-var lowerCase = false;
+var lowerCase = true;
 var upperCase = false;
 var symbols = false;
 var numeric = false;
